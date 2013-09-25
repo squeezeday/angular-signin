@@ -26,12 +26,12 @@
 					login: function(username, password, next) {
 						var data = {username: username, password: password};
 						$http({url: '/api/login', method: 'POST', data: data})
-							.success(function(ret){ user = ret.user; $rootScope.$broadcast('userChanged',{}); next(ret); })
+							.success(function(ret){ user = ret.user; next(ret); })
 							.error(function(ret){ next(null,ret); });
 					},
 					logout: function(next) {
 						$http({url: '/api/logout', method: 'GET'})
-							.success(function(ret){ user = null; $rootScope.$broadcast('userChanged',{}); next(); })
+							.success(function(ret){ user = null; next(); })
 							.error(function(ret){next(ret);});
 					},
 					status: function(next) {
