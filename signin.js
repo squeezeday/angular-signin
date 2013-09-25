@@ -14,7 +14,7 @@
 
     angular.module('squeezeday.signin', [])
 		
-		.factory('UserService', function($http, $rootScope) {
+		.factory('UserService', ['$http', function($http) {
 			var user = null;
 			return {
 					isLoggedIn: function() { 
@@ -26,7 +26,9 @@
 					login: function(username, password, next) {
 						var data = {username: username, password: password};
 						$http({url: '/api/login', method: 'POST', data: data})
-							.success(function(ret){ user = ret.user; next(ret); })
+							.success(function(ret){ 
+									user = ret; next(ret);
+							})
 							.error(function(ret){ next(null,ret); });
 					},
 					logout: function(next) {
@@ -34,16 +36,13 @@
 							.success(function(ret){ user = null; next(); })
 							.error(function(ret){next(ret);});
 					},
-					status: function(next) {
+					status: function() {
 						$http({url: '/api/status', method: 'GET'})
-							.success(function(ret){
-									user = (ret.user != null ? ret.user : null);
-									next(ret);
-							})
-							.error(function(ret){next(null,ret);});
+							.success(function(ret){user = ret;})
+							.error(function(ret) { user = null; });
 					}
 			};
-		})
+		}])
 
 		.controller('SignInController', [
 			'$scope', 'UserService',
@@ -75,6 +74,7 @@
 					UserService.logout(function(err) {
 					});
 				};
+				UserService.status();
 		}])
 	}
 ));

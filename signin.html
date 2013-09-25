@@ -108,8 +108,8 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Hello, world!</h1>
-        <p>This is an example of using a simple Bootstrap modal and  AngularJS for login purposes.</p>
-        <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        <p>This is an example of using a simple Bootstrap modal and  AngularJS for login purposes. Although this example works you should probably use <a href="http://angular-ui.github.io/bootstrap/">Angular UI</a> for large projects which has a more "Angular way" of doing modals.</p>
+
       </div>
     </div>
 
@@ -118,16 +118,15 @@
       <div class="row">
 
         <div class="col-lg-4">
-          <h2>API</h2>
+          <h2>APIs expected</h2>
           <p>Log in: By default the UserService POSTs username and password to /api/login </p>
           <p>Log out: By default the UserService GETs /api/logout</p>
-          <p>(optional) Status: By default the UserService GETs /api/status May be useful for keeping sessions alive (set a timer and poll it).</p>
-          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+          <p>(optional) Status: By default the UserService GETs /api/status. May be useful for auto-login on page reload or keeping sessions alive (set a timer and poll it).</p>
        </div>
         <div class="col-lg-4">
           <h2>Backend</h2>
           <p>Your backend should return 200 and a json encoded user object on successful login. Otherwise return 401.</p>
-          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+
         </div>
         <div class="col-lg-4">
           <h2>Watching for changes</h2>
@@ -137,7 +136,6 @@
 				$scope.user = UserService.getUser();<br/>
 			});</code>
 			</div>
-          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div>
       </div>
 
