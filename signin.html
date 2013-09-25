@@ -12,8 +12,6 @@
     <!-- Bootstrap core CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="app.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -67,7 +65,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Sign in example</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -110,7 +108,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p>This is an example of using a simple Bootstrap modal and  AngularJS for login purposes.</p>
         <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
       </div>
     </div>
@@ -118,19 +116,27 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
+
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <h2>API</h2>
+          <p>Log in: By default the UserService POSTs username and password to /api/login </p>
+          <p>Log out: By default the UserService GETs /api/logout</p>
+          <p>(optional) Status: By default the UserService GETs /api/status May be useful for keeping sessions alive (set a timer and poll it).</p>
           <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
        </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <h2>Backend</h2>
+          <p>Your backend should return 200 and a json encoded user object on successful login. Otherwise return 401.</p>
+          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Watching for changes</h2>
+          <p>Use the following snippet in your custom controllers to watch for user changes</p>
+          <div>
+          <code>$scope.$watch(UserService.isLoggedIn, function(isLoggedIn) {<br/>
+				$scope.user = UserService.getUser();<br/>
+			});</code>
+			</div>
           <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div>
       </div>
@@ -141,7 +147,9 @@
         <p>&copy; Company 2013</p>
       </footer>
     </div> <!-- /container -->
-
+    
+    
+    
 	<div class="modal fade" id="sign-in" data-ng-controller="SignInController">
 	    <form class="form-signin" data-ng-submit="signin()" name="form-signin">
 		  <div class="modal-dialog">
@@ -167,13 +175,16 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" data-loading-text="Signing in..." data-ng-click="signin()" data-ng-disabled="form-signin.$invalid">Sign in</button>
+				<button type="button" class="btn btn-primary" data-loading-text="Signing in..." data-ng-click="signin()" data-ng-disabled="isClean() || form-signin.$invalid">Sign in</button>
 			  </div>
 			</div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 	    </form>
 	</div><!-- /.modal -->
 
+
+    
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

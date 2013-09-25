@@ -57,6 +57,9 @@
 						}
 					});
 				};
+				$scope.isClean = function() {
+					return $scope.username == null || $scope.password == null;
+				};
 		}])
 		
 		.controller('UserStatusController', [
